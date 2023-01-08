@@ -109,116 +109,133 @@ id: root
 		width: root.width
 		
 		ListView {
-		id: detailedAxis
-		//property var currentGame: model.get(currentIndex).game
+			id: detailedAxis
+			//property var currentGame: model.get(currentIndex).game
 
-		x: vpx(70) //root.focus ? vpx(325) : vpx(120)
-        y: vpx(5)
+			x: vpx(70) //root.focus ? vpx(325) : vpx(120)
+			y: vpx(5)
 		
-		Behavior on x { NumberAnimation { duration: 200; 
-            easing.type: Easing.OutCubic;
-            easing.amplitude: 2.0;
-            easing.period: 1.5 
-            }
-        }
-		
-		height: parent.height
-		width: vpx(512)
-
-		orientation: ListView.Vertical
-		
-		model: collectionIdx == -3 ? currentGame.options : detailedListModel //itemListModel //itemListModel.buildList(collectionBar.currentCollection.idx) //collectionBar.currentCollection.idx >= 0 ? api.collections.get(collectionBar.currentCollection.idx).games : (collectionBar.currentCollection.idx == -1 ? listRecent.games : (collectionBar.currentCollection.idx == -2 ? itemListModel : ""))
-		
-        delegate: detailedAxisDelegate
-        spacing: vpx(10)
-				
-		snapMode: ListView.SnapOneItem
-		highlightRangeMode: ListView.StrictlyEnforceRange
-		highlightMoveDuration : 200
-		highlightMoveVelocity : 1000
-				
-		preferredHighlightBegin: vpx(282)
-		preferredHighlightEnd: preferredHighlightBegin + vpx(60)// + vpx(240) // the width of one game box
-	
-		clip: true
-		focus: true
-		
-		
-		
-		Keys.onLeftPressed: { 
-            event.accepted = true;
-			exit();
-        }
-	}
-	
-	Component {
-        id: detailedAxisDelegate
-
-		Item {
-			property bool selected: ListView.isCurrentItem
-
-			height: selected ? vpx(72) : vpx(32)
-			opacity: selected ? 1.0 : (root.focus ? 0.4 : 0.0)
-					
-			RowLayout{
-				anchors.fill: parent
-				
-				
-				Item {		
-					Layout.fillHeight: true
-					Layout.alignment: Qt.AlignLeft
-					
-					Layout.leftMargin: selected ? vpx(8) : vpx(20)
-					Layout.topMargin: selected ? vpx(5) : vpx(0)
-					Layout.bottomMargin: selected ? vpx(5) : vpx(0)
-
-					implicitWidth: selected ? vpx(62) : vpx(32)
-					
-					Image {
-						asynchronous: true
-						anchors.fill: parent
-						source: tile //"assets/icons/setting.png" //icon //modelData.assets.tile
-					}
+			Behavior on x { NumberAnimation { duration: 200; 
+				easing.type: Easing.OutCubic;
+				easing.amplitude: 2.0;
+				easing.period: 1.5 
 				}
-				
-				ColumnLayout{
-				
-					//Layout.fillHeight: true
-					//Layout.alignment: Qt.AlignLeft
-					opacity: root.focus ? 1.0 : 0.0
-					
-					Layout.leftMargin: selected ? vpx(22) : vpx(40)
-					//Layout.topMargin: selected ? vpx(80) : vpx(2)
-					
-					Text {
+			}
+		
+			height: parent.height
+			width: vpx(512)
 
-						text: title
-						color: "white"
+			orientation: ListView.Vertical
+		
+			model: collectionIdx == -3 ? currentGame.options : detailedListModel //itemListModel //itemListModel.buildList(collectionBar.currentCollection.idx) //collectionBar.currentCollection.idx >= 0 ? api.collections.get(collectionBar.currentCollection.idx).games : (collectionBar.currentCollection.idx == -1 ? listRecent.games : (collectionBar.currentCollection.idx == -2 ? itemListModel : ""))
+		
+			delegate: detailedAxisDelegate
+			spacing: vpx(10)
+				
+			snapMode: ListView.SnapOneItem
+			highlightRangeMode: ListView.StrictlyEnforceRange
+			highlightMoveDuration : 200
+			highlightMoveVelocity : 1000
+				
+			preferredHighlightBegin: vpx(282)
+			preferredHighlightEnd: preferredHighlightBegin + vpx(60)// + vpx(240) // the width of one game box
+	
+			clip: true
+			focus: true
+		
+		
+		
+			Keys.onLeftPressed: { 
+				event.accepted = true;
+				exit();
+			}
+		}
+	
+		Component {
+			id: detailedAxisDelegate
+
+			Item {
+				property bool selected: ListView.isCurrentItem
+	
+				height: selected ? vpx(72) : vpx(32)
+				opacity: selected ? 1.0 : (root.focus ? 0.4 : 0.0)
 					
-						font.family: generalFont.name
-						font.pointSize: 22
+				RowLayout{
+					anchors.fill: parent
+				
+				
+					Item {		
+						Layout.fillHeight: true
+						Layout.alignment: Qt.AlignLeft
+						
+						Layout.leftMargin: selected ? vpx(8) : vpx(20)
+						Layout.topMargin: selected ? vpx(5) : vpx(0)
+						Layout.bottomMargin: selected ? vpx(5) : vpx(0)
+
+						implicitWidth: selected ? vpx(62) : vpx(32)
+					
+						Image {
+							asynchronous: true
+							anchors.fill: parent
+							source: tile //"assets/icons/setting.png" //icon //modelData.assets.tile
+						}
 					}
-					
-					Text {
+				
+					ColumnLayout{
+				
 						//Layout.fillHeight: true
 						//Layout.alignment: Qt.AlignLeft
+						opacity: root.focus ? 1.0 : 0.0
 					
-						//Layout.leftMargin: selected ? vpx(18) : vpx(40)
-						//Layout.topMargin: selected ? vpx(180) : vpx(2)
+						Layout.leftMargin: selected ? vpx(22) : vpx(40)
+						//Layout.topMargin: selected ? vpx(80) : vpx(2)
 					
-						text: collectionIdx > -3 ? description : "" //"Last Played: " + description//(modelData.lastPlayed == "Invalid Date" ? "Never" : modelData.lastPlayed)
-						color: "white"
+						Text {
+
+							text: title
+							color: "white"
 					
-						font.family: generalFont.name
-						font.pointSize: 12
+							font.family: generalFont.name
+							font.pointSize: 22
+						}
+					
+						Text {
+							//Layout.fillHeight: true
+							//Layout.alignment: Qt.AlignLeft
+					
+							//Layout.leftMargin: selected ? vpx(18) : vpx(40)
+							//Layout.topMargin: selected ? vpx(180) : vpx(2)
+					
+							text: collectionIdx > -3 ? description : "" //"Last Played: " + description//(modelData.lastPlayed == "Invalid Date" ? "Never" : modelData.lastPlayed)
+							color: "white"
+					
+							font.family: generalFont.name
+							font.pointSize: 12
 						
-						visible: selected ? true : false
+							visible: selected ? true : false
+						}
 					}
 				}
 			}
-		}
-    }	
+		}	
 	
+		Image {
+			id: undoIcon
+			opacity: 0.4
+			anchors {
+				left: parent.left;// leftMargin: vpx(250)
+				top: parent.top; topMargin: vpx(298)
+			}			
+		
+			height: vpx(48)
+			width: vpx(48)
+		
+			fillMode: Image.PreserveAspectFit
+		
+			source: "assets/icons/undo.png"
+			//visible: collectionIdx > -3 ? true : false
+		}
+		
 		Image {
 			anchors {
 				//left: descriptionText.left;// leftMargin: vpx(250)

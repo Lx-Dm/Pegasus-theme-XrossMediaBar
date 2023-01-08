@@ -57,11 +57,11 @@ FocusScope {
 			description: "Default background",
             assets: { tile: "assets/icons/setting.png"}, // background: settings.background },
 			options: [
-				{ title: "xmb-wave-0", tile: "assets/icons/setting.png" },
-                { title: "xmb-wave-1", tile: "assets/icons/setting.png" },
-                { title: "xmb-wave-2", tile: "assets/icons/setting.png" },
-				{ title: "xmb-wave-3", tile: "assets/icons/setting.png" },
-				{ title: "xmb-wave-4", tile: "assets/icons/setting.png" }
+				{ title: "xmb-wave-0", tile: "assets/icons/subsetting.png" },
+                { title: "xmb-wave-1", tile: "assets/icons/subsetting.png" },
+                { title: "xmb-wave-2", tile: "assets/icons/subsetting.png" },
+				{ title: "xmb-wave-3", tile: "assets/icons/subsetting.png" },
+				{ title: "xmb-wave-4", tile: "assets/icons/subsetting.png" }
             ]
         });
         append({
@@ -69,10 +69,10 @@ FocusScope {
 			description: "Select icon sorce",
             assets: { tile: "assets/icons/setting.png"}, // background: settings.background },
 			options: [
-                { title: "Tile", tile: "assets/icons/setting.png" },
-                { title: "Logo", tile: "assets/icons/setting.png" },
-				{ title: "Background", tile: "assets/icons/setting.png" },
-				{ title: "BoxFront", tile: "assets/icons/setting.png" }
+                { title: "Tile", tile: "assets/icons/subsetting.png" },
+                { title: "Logo", tile: "assets/icons/subsetting.png" },
+				{ title: "Background", tile: "assets/icons/subsetting.png" },
+				{ title: "BoxFront", tile: "assets/icons/subsetting.png" }
             ]
         });
         //append({

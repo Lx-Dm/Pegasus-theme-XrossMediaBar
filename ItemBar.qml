@@ -66,7 +66,7 @@ FocusScope {
         });
         append({
             title: "Icon Source",
-			description: "Select icon sorce",
+			description: "Select icon source",
             assets: { tile: "assets/icons/setting.png"}, // background: settings.background },
 			options: [
                 { title: "Tile", tile: "assets/icons/subsetting.png" },

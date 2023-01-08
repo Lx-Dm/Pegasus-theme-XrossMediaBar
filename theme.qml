@@ -8,6 +8,16 @@ FocusScope {
 
 	FontLoader { id: generalFont; source: "assets/fonts/font.ttf" }
 
+	property var settings: {
+        return {
+            background:         	api.memory.has("Background") ? "assets/background/xmb-wave-" + api.memory.get("Background") + ".jpg" : "assets/background/xmb-wave-1.jpg",
+            iconSource:             api.memory.has("Icon Source") ? api.memory.get("Icon Source") : "0"
+            //wordWrap:               api.memory.has("Word Wrap on Titles") ? api.memory.get("Word Wrap on Titles") : "Yes",
+            //batteryPercentSetting:  api.memory.has("Display Battery Percentage") ? api.memory.get("Display Battery Percentage") : "No",
+           // enableDropShadows:      api.memory.has("Enable DropShadows") ? api.memory.get("Enable DropShadows") : "Yes",
+            //playBGM:                api.memory.has("Background Music") ? api.memory.get("Background Music"): "No"
+        }
+    }
 	// Background
     Item {
     id: background
@@ -19,7 +29,7 @@ FocusScope {
         property bool firstBG: true
         
         //property var bgData: itemBar.currentItem
-        property var bgSource: {if (itemBar.currentItem != null) return itemBar.currentItem.assets.background} //collectionBar.currentCollection.idx > -2 ? bgData.background : (collectionBar.currentCollection.background) //(bgData ? Utils.fanArt(bgData) || bgData.assets.screenshots[0] : "") : (collectionBar.currentCollection.background)
+        property var bgSource: {if (collectionBar.currentCollection.idx == -3 ) { settings.background } else if (itemBar.currentItem != null) return itemBar.currentItem.assets.background} //collectionBar.currentCollection.idx > -2 ? bgData.background : (collectionBar.currentCollection.background) //(bgData ? Utils.fanArt(bgData) || bgData.assets.screenshots[0] : "") : (collectionBar.currentCollection.background)
         onBgSourceChanged: { if (bgSource != "") swapImage(bgSource) }
 
         states: [

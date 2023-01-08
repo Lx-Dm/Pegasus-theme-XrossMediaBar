@@ -15,22 +15,22 @@ id: root
 	signal exit
 	
 	onCurrentGameChanged: {
-		detailedAxis.model = null;
+		//detailedAxis.model = null;
 		
-		if (currentGame != null) {
-			if (collectionIdx > -3) {
-				if (currentGame.favorite) {
-					detailedListModel.get(1).tile = "assets/icons/favorite.png";
-					detailedListModel.get(1).description = "Mark as unfavorite";
-				} else {
-					detailedListModel.get(1).tile = "assets/icons/unfavorite.png";
-					detailedListModel.get(1).description = "Mark as favorite";
-				}
-				detailedAxis.model = detailedListModel;
-			} else {
-				detailedAxis.model = settingsListModel;
-			}
-		}
+		//if (currentGame != null) {
+		//	if (collectionIdx > -3) {
+		//		if (currentGame.favorite) {
+		//			detailedListModel.get(1).tile = "assets/icons/favorite.png";
+		//			detailedListModel.get(1).description = "Mark as unfavorite";
+		//		} else {
+		//			detailedListModel.get(1).tile = "assets/icons/unfavorite.png";
+		//			detailedListModel.get(1).description = "Mark as favorite";
+		//		}
+				//detailedAxis.model = detailedListModel;
+		//	} else {
+				//detailedAxis.model = settingsListModel;
+		//	}
+		//}
 		
 		
 	}
@@ -127,7 +127,7 @@ id: root
 
 		orientation: ListView.Vertical
 		
-		model: collectionIdx == -3 ? settingsListModel : detailedListModel //itemListModel //itemListModel.buildList(collectionBar.currentCollection.idx) //collectionBar.currentCollection.idx >= 0 ? api.collections.get(collectionBar.currentCollection.idx).games : (collectionBar.currentCollection.idx == -1 ? listRecent.games : (collectionBar.currentCollection.idx == -2 ? itemListModel : ""))
+		model: collectionIdx == -3 ? currentGame.options : detailedListModel //itemListModel //itemListModel.buildList(collectionBar.currentCollection.idx) //collectionBar.currentCollection.idx >= 0 ? api.collections.get(collectionBar.currentCollection.idx).games : (collectionBar.currentCollection.idx == -1 ? listRecent.games : (collectionBar.currentCollection.idx == -2 ? itemListModel : ""))
 		
         delegate: detailedAxisDelegate
         spacing: vpx(10)
@@ -206,7 +206,7 @@ id: root
 						//Layout.leftMargin: selected ? vpx(18) : vpx(40)
 						//Layout.topMargin: selected ? vpx(180) : vpx(2)
 					
-						text: description //"Last Played: " + description//(modelData.lastPlayed == "Invalid Date" ? "Never" : modelData.lastPlayed)
+						text: collectionIdx > -3 ? description : "" //"Last Played: " + description//(modelData.lastPlayed == "Invalid Date" ? "Never" : modelData.lastPlayed)
 						color: "white"
 					
 						font.family: generalFont.name
@@ -263,20 +263,25 @@ id: root
 			
 			if (api.keys.isAccept(event) && !event.isAutoRepeat){
 				event.accepted = true;
-				if (detailedAxis.currentIndex == 0) {
+				if (collectionIdx > -3 ) {
+					if (detailedAxis.currentIndex == 0) {
 						root.currentGame.launch();
-				}
-				if (detailedAxis.currentIndex == 1) {
-					root.currentGame.favorite = !root.currentGame.favorite;
-					if (root.collectionIdx == -2) exit();
-					
-					if (root.currentGame.favorite) {
-						detailedAxis.model.get(1).tile = "assets/icons/favorite.png"
-						detailedListModel.get(1).description = "Mark as unfavorite";
-					} else {
-						detailedAxis.model.get(1).tile = "assets/icons/unfavorite.png"
-						detailedListModel.get(1).description = "Mark as favorite";
 					}
+					if (detailedAxis.currentIndex == 1) {
+						root.currentGame.favorite = !root.currentGame.favorite;
+						if (root.collectionIdx == -2) exit();
+					
+						if (root.currentGame.favorite) {
+							detailedAxis.model.get(1).tile = "assets/icons/favorite.png"
+							detailedListModel.get(1).description = "Mark as unfavorite";
+						} else {
+							detailedAxis.model.get(1).tile = "assets/icons/unfavorite.png"
+							detailedListModel.get(1).description = "Mark as favorite";
+						}
+					}
+				} else if (collectionIdx == -3 ) {
+					if (currentGame.title == "Background") api.memory.set("Background", detailedAxis.currentIndex);
+					if (currentGame.title == "Icon Source") api.memory.set("Icon Source", detailedAxis.currentIndex);
 				}
 			}
 			if (api.keys.isCancel(event)){

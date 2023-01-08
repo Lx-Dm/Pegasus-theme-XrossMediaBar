@@ -34,20 +34,20 @@ FocusScope {
 		    append({
                 "name":         "Settings", 
                 "idx":          -3,
-                "icon":         "assets/icons/settings.png",
-                "background":   "assets/background/xmb-wave-2.jpg"
+                "icon":         "assets/icons/settings.png"//,
+                //"background":   "assets/background/xmb-wave-2.jpg"
             })
 			append({
                 "name":         "Favorites", 
                 "idx":          -2, 
-                "icon":         "assets/icons/favorites.png",
-                "background":   "assets/background/xmb-wave-2.jpg"
+                "icon":         "assets/icons/favorites.png"//,
+                //"background":   "assets/background/xmb-wave-2.jpg"
             })
             append({
                 "name":         "Recent Played", 
                 "idx":          -1, 
-                "icon":         "assets/icons/history.png",
-                "background":   "assets/background/xmb-wave-2.jpg"
+                "icon":         "assets/icons/history.png"//,
+                //"background":   "assets/background/xmb-wave-2.jpg"
             })
 			
             for(var i=0; i<api.collections.count; i++) {

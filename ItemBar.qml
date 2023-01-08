@@ -53,20 +53,37 @@ FocusScope {
     id: itemListModel
 		Component.onCompleted: {
         append({
-            title: "Image 1",
-			description: "Option description",
-            assets: { tile: "assets/icons/setting.png", background: "assets/background/xmb-wave-2.jpg" }
+            title: "Background",
+			description: "Default background",
+            assets: { tile: "assets/icons/setting.png"}, // background: settings.background },
+			options: [
+				{ title: "xmb-wave-0", tile: "assets/icons/setting.png" },
+                { title: "xmb-wave-1", tile: "assets/icons/setting.png" },
+                { title: "xmb-wave-2", tile: "assets/icons/setting.png" },
+				{ title: "xmb-wave-3", tile: "assets/icons/setting.png" },
+				{ title: "xmb-wave-4", tile: "assets/icons/setting.png" }
+            ]
         });
         append({
-            title: "Image 2",
-			description: "Option description",
-            assets: { tile: "assets/icons/setting.png", background: "assets/background/xmb-wave-2.jpg" }
+            title: "Icon Source",
+			description: "Select icon sorce",
+            assets: { tile: "assets/icons/setting.png"}, // background: settings.background },
+			options: [
+                { title: "Tile", tile: "assets/icons/setting.png" },
+                { title: "Logo", tile: "assets/icons/setting.png" },
+				{ title: "Background", tile: "assets/icons/setting.png" },
+				{ title: "BoxFront", tile: "assets/icons/setting.png" }
+            ]
         });
-        append({
-            title: "Image 3",
-			description: "Option description",
-            assets: { tile: "assets/icons/setting.png", background: "assets/background/xmb-wave-2.jpg" }
-        });
+        //append({
+        //    title: "Image 3",
+		//	description: "Option description",
+        //    assets: { tile: "assets/icons/setting.png"}, // background: settings.background },
+		//	options: [
+        //         { title: "five", tile: "assets/icons/setting.png" },
+        //         { title: "six", tile: "assets/icons/setting.png" }
+        //    ]
+        //});
     }
     }
 
@@ -142,7 +159,16 @@ FocusScope {
 						asynchronous: true
 						anchors.fill: parent
 						fillMode: Image.PreserveAspectFit
-						source: assets.tile
+						source: { if (collectionIdx == -3 ) {
+									return assets.tile;
+								} else {
+									if (settings.iconSource == "0") return assets.tile;
+									if (settings.iconSource == "1") return assets.logo;
+									if (settings.iconSource == "2") return assets.background;
+									if (settings.iconSource == "3") return assets.boxFront;
+								}
+						}
+						
 					}
 				}
 				

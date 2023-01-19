@@ -85,12 +85,12 @@ id: root
         //NumberAnimation { target: detailed; property: "opacity"; to: 0; duration: 100 }
         PauseAnimation  { duration: 100 }
         ParallelAnimation {
-            NumberAnimation { target: detailed; property: "opacity"; from: 0; to: 1; duration: 400;
+            NumberAnimation { target: detailed; property: "opacity"; from: 0; to: 1; duration: 350;
                 easing.type: Easing.OutCubic;
                 easing.amplitude: 2.0;
                 easing.period: 1.5 
             }
-            NumberAnimation { target: detailed; property: "y"; from: 50; to: 0; duration: 400;
+            NumberAnimation { target: detailed; property: "x"; from: 50; to: 0; duration: 350;
                 easing.type: Easing.OutCubic;
                 easing.amplitude: 2.0;
                 easing.period: 1.5 
@@ -224,11 +224,11 @@ id: root
 			opacity: 0.4
 			anchors {
 				left: parent.left;// leftMargin: vpx(250)
-				top: parent.top; topMargin: vpx(298)
+				top: parent.top; topMargin: vpx(306)
 			}			
 		
-			height: vpx(48)
-			width: vpx(48)
+			height: vpx(32)
+			width: vpx(32)
 		
 			fillMode: Image.PreserveAspectFit
 		
@@ -303,6 +303,7 @@ id: root
 			}
 			if (api.keys.isCancel(event)){
 				event.accepted = true;
+				backSfx.play();
 				exit();
 			}
 		}

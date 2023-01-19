@@ -61,7 +61,10 @@ FocusScope {
                 { title: "xmb-wave-1", tile: "assets/icons/subsetting.png" },
                 { title: "xmb-wave-2", tile: "assets/icons/subsetting.png" },
 				{ title: "xmb-wave-3", tile: "assets/icons/subsetting.png" },
-				{ title: "xmb-wave-4", tile: "assets/icons/subsetting.png" }
+				{ title: "xmb-wave-4", tile: "assets/icons/subsetting.png" },
+				{ title: "xmb-wave-5", tile: "assets/icons/subsetting.png" },
+				{ title: "xmb-wave-6", tile: "assets/icons/subsetting.png" },
+				{ title: "xmb-wave-7", tile: "assets/icons/subsetting.png" }
             ]
         });
         append({
@@ -124,11 +127,27 @@ FocusScope {
 		
 		Keys.onRightPressed: { 
             event.accepted = true;
-			collectionBar.list.incrementCurrentIndex()
+			navSfx.play();
+			collectionBar.list.incrementCurrentIndex();
+			
         }
 		Keys.onLeftPressed: { 
             event.accepted = true;
-			collectionBar.list.decrementCurrentIndex() //moveElement(-1)
+			navSfx.play();
+			collectionBar.list.decrementCurrentIndex(); //moveElement(-1)
+			
+        }
+		
+		Keys.onUpPressed: { 
+            event.accepted = true;
+			navSfx.play();
+			decrementCurrentIndex();
+        }
+		
+		Keys.onDownPressed: { 
+            event.accepted = true;
+			navSfx.play();
+			incrementCurrentIndex();
         }
 		
 	}

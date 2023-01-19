@@ -1,6 +1,7 @@
 import QtQuick 2.7
 import QtQuick.Layouts 1.1
-import QtGraphicalEffects 1.15
+//import QtGraphicalEffects 1.15
+import QtMultimedia 5.9
 import "Lists"
 import "utils.js" as Utils
 
@@ -12,12 +13,9 @@ FocusScope {
         return {
             background:         	api.memory.has("Background") ? "assets/background/xmb-wave-" + api.memory.get("Background") + ".jpg" : "assets/background/xmb-wave-1.jpg",
             iconSource:             api.memory.has("Icon Source") ? api.memory.get("Icon Source") : "0"
-            //wordWrap:               api.memory.has("Word Wrap on Titles") ? api.memory.get("Word Wrap on Titles") : "Yes",
-            //batteryPercentSetting:  api.memory.has("Display Battery Percentage") ? api.memory.get("Display Battery Percentage") : "No",
-           // enableDropShadows:      api.memory.has("Enable DropShadows") ? api.memory.get("Enable DropShadows") : "Yes",
-            //playBGM:                api.memory.has("Background Music") ? api.memory.get("Background Music"): "No"
         }
     }
+	
 	// Background
     Item {
     id: background
@@ -212,4 +210,15 @@ FocusScope {
 			collectionBar.list.decrementCurrentIndex();
 		}
 	}
+	
+	SoundEffect {
+        id: navSfx
+        source: "assets/audio/nav.wav"
+        volume: 0.25
+    }
+	SoundEffect {
+        id: backSfx
+        source: "assets/audio/back.wav"
+        volume: 0.25
+    }
 }

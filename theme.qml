@@ -175,7 +175,7 @@ FocusScope {
 		//	focus = false;
 		//}
 	}
-	
+
 	GameDetails {
 		id: gameDetails
 		//opacity: focus ? 1.0 : 0.0

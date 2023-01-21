@@ -38,6 +38,11 @@ id: root
     onFocusChanged: {
 		if (focus) {
 			introAnim.restart();
+			if (collectionIdx > -3) {
+				detailedAxis.model.get(1).tile = currentGame.favorite ? "assets/icons/favorite.png" : "assets/icons/unfavorite.png";
+				detailedAxis.model.get(1).description = currentGame.favorite ? "Mark as unfavorite" : "Mark as favorite";
+				detailedAxis.currentIndex = 0;
+			}			
 		} else {
 			introAnim.stop();
 			detailed.opacity = 0;
@@ -257,7 +262,7 @@ id: root
 		Text {
 		id: descriptionText
 			anchors {
-					left: parent.left; leftMargin: vpx(350)
+				left: parent.left; leftMargin: vpx(350)
 				right: parent.right;
 				top: parent.top; topMargin: vpx(250)
 				bottom: parent.bottom; bottomMargin: vpx(100)
